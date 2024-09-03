@@ -63,9 +63,10 @@ df_grp %>%
   filter(mean_smatsscr == 0)
 #I notice the output is 15 observations long
 #Thus, total number of subjects is 15
-
-
-#reporting data 
+#if we make a histogram, we can see the distribution of mean scores: 
+hist(df_grp$mean_smatsscr)
+#its not pretty, but we can see the mean scores are distributed around 0.5-1
+#I think the best way to report this data would be with a histogram. However, I think it would be much better to make it with ggplot (which we will do this afternoon!)
 
 
 
