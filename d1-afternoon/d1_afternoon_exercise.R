@@ -71,12 +71,23 @@ ggplot(data = df_RNA,
 # It seems the variation does depend on tissue type. It seems like, for some tissues, the autolysis score increases with ischemic time, and seems to be inversely proportional to RNA quality.For other tissues, the relationship is not as obvious, and for some there is no autolysis data at all (for example, cultured fibroblasts). 
 
 #Question 10
-ggplot(data = df_RNA, 
+ggplot(data = df_RNA %>% filter(SMBSMMRT < .025), 
        mapping = aes(
-         x = SMNABTCHD, 
-         y = SMRIN
-       )) + geom_point() + coord_flip() + 
+         x = SMBSMMRT, 
+         y = SMRIN)) + 
+  geom_point() + 
+  geom_smooth(method = "lm")
+#When you compare RIN to the Base Mismatch Rate (SMBSMMRT) and remove outliers, it seems like there is a slight negative correlation (which makes sense to me. The more mismatches, the lower quality the RNA sample). 
+
+ggplot(data = df_RNA %>% filter(SMBSMMRT < .025), 
+       mapping = aes(
+         x = SMBSMMRT, 
+         y = SMRIN)) + 
+  geom_point() + 
+  geom_smooth(method = "lm") + 
   facet_wrap(. ~ SMTSD)
+#However, this correlaton is much less clear when you subset by tissue type. 
+  
  
 
 
