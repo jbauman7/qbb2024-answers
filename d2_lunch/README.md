@@ -38,6 +38,11 @@ This outputs:
 Showing the distributions of IG Pseudogenes over the chromosomes. It seems to mostly reflect the distrubtion of IGs without pseudogenes. 
 
 # Question 2
+If you just use grep pseudogene on the dataset, you'll pull in a lot of other gene types such as "overlaps_pseudogene". Thus, we grepped by "IG_" first, and then "pseudogene", which fixed this issue. 
+
+# Question 3
+I selected the chromosome, start, stop, and gene name columns using cut. Then I converted to .bed format. 
+`cut -f 1,4,5,14 gene-tabs.gtf > gene-tabs.bed`
 
 
 
