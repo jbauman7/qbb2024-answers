@@ -7,7 +7,7 @@ my_file = open(sys.argv[2])
 
 for my_line in my_file:
     if gword in my_line:
-        my_line = my_line.strip("\n")
+        my_line = my_line.strip("\n") #removing extra new line characters
         print(my_line)
  
 #if the word is present in the line, print the line. 
