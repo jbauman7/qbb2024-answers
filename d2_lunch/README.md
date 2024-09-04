@@ -15,16 +15,19 @@ I am seeing lots of terms related to protein-protein and protein DNA binding. I 
 # Question 1
 `cmdb@QuantBio-15 d2_morning % grep "IG_" genes.gtf | grep -v "pseudogene" | sort -k1 | cut -f 1 |uniq -c | sort -n -r`
 This outputs: 
+
  91 chr14
   52 chr2
   48 chr22
   16 chr15
    6 chr16
    1 chr21
+   
 Showing us the number of IG genes (not pseudogenes) on each chromosomes. 
 To find the distribution of IG_pseudogenes, I did this: 
 `cmdb@QuantBio-15 d2_morning % grep "IG_" genes.gtf | grep "pseudogene" | sort -k1 | cut -f 1 | uniq -c | sort -n -r`
 This outputs: 
+
   84 chr14
   48 chr22
   45 chr2
@@ -35,6 +38,7 @@ This outputs:
    1 chr18
    1 chr10
    1 chr1
+
 Showing the distributions of IG Pseudogenes over the chromosomes. It seems to mostly reflect the distrubtion of IGs without pseudogenes. 
 
 # Question 2
