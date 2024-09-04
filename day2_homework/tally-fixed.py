@@ -15,7 +15,7 @@ for my_line in my_file:
         continue
     fields = my_line.split("\t")
     if chr == "": 
-        chr = fields[0] #need to add this, as the original function was leaving line 1 of the data uncounted
+        chr = fields[0] #need to add this, as the original function was leaving line 1 of the data uncounted, because the if statement is true when the initial chr value is just an empty string
     if fields[0] != chr:
         print( count, chr )
         chr = fields[0]
