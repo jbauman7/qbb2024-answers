@@ -1,0 +1,48 @@
+---
+title: "README"
+output: html_document
+date: "2024-09-15"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Week 1 exercises
+
+### Question 1.1 
+
+num_reads = 1000000 * 3 / 100
+num_reads = 30000
+
+### Question 1.2
+
+I did this question in Python. I re-used my code for later questions where I increased the coverage level, but I saved each graph I made and uploaded them here on Github. 
+
+### Question 1.4
+
+1. About 50,000 positions have 0 coverage. From the data file, I can see that the exact number is 48632 positions have 0 coverage and thus haven't been sequenced. (About 5% of the genome) 
+2. This data matches a poisson distribution very well. It matches a normal distribution well, but not as well as poisson. The peak is slightly off. 
+
+### Question 1.5
+
+1. Almost none of the genome has 0 coverage. It isn't easily readable on the graph. From the data file, I can see that only 56 positions have 0 coverage. This is equivalent to 0.0056% of the genome. 
+2. This distribution matches both poisson and normal expectations very well. 
+
+### Question 1.6
+
+1. Almost none of the genome has 0 coverage. It isnt readable on the graph. From the data file, I can see that only 2 positions have 0 coverage. This is equivalent to 0.0002% of the genome. 
+2. This data matches both poisson and normal expectations extremely well. 
+
+### Question 2.4
+
+The code I used to produce the graphviz graph is: 
+```dot -Tpng ./edges.txt -o ex2_digraph.png```
+
+### Question 2.5
+ATTCTTATTCATTGATTT
+
+## Question 2.6
+To accurately reconstruct the sequence of the genome, you would need to know the length of the genome to stop from repeating sequences too many times. Also, longer reads would bypass the issue of repeated sequences. Fortunately, there are more technologies available today to get long read length in genome sequencing. 
+
+
