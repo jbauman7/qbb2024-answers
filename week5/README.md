@@ -5,7 +5,7 @@
 Likely because we are looking at RNA expression data (and thus cDNA), whereas fastqc is meant for DNA genomic sequence data. The reads would match RNAs (mRNAs, rRNAs, etc) which would have different early sequence and GC content from that which would be expected of the entire genome. 
 
 #1.2
-The most overrepresented sequence in the expression data is from serine protease (Ser1, Ser2 and Ser3). This makes sense because serine proteases are digestive enzymes, adn would thus have high representation within the drosophila gut. 
+The most overrepresented sequence in the expression data is from serine protease (Ser1, Ser2 and Ser3). This makes sense because serine proteases are digestive enzymes, and would thus have high representation within the drosophila gut. 
 
 #2
 - It depends on the quality checking method. In general stats, you would keep 25 samples. In fastqc, you would not keep any samples.  
