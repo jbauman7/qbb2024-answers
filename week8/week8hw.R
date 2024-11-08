@@ -45,3 +45,19 @@ summary(celldetected)
 1059/13407 * 100
 #This represents about 8% of the total genes in the data set 
 
+#Question 5
+mito <- grep(rownames(gut), pattern = "^mt:", value = TRUE)
+df <- perCellQCMetrics(gut, subsets = list(Mito = mito))
+df <- as.data.frame(df)
+summary(df)
+#mean sum and detected match 
+colData(gut) <- cbind( colData(gut), df )
+plotColData(gut, y = "subsets_Mito_percent", x = "broad_annotation") + 
+  theme( axis.text.x=element_text( angle=90 ) ) + 
+  labs(title = "Percent Mitochondrial Reads Across Cell Types", y = "Percent Mitochondrial Reads", x = "Cell type")
+#Looks like enteroendocrine cells, gland cells, gut cells, muscle cells, and somatic precursor cells seems to have the highest percentage of mitochondrial reads, and thus have the highest presence/activity of mitochondria within them. This makes sense, as these cells are involved with lots of secretion and protein production (glands, gut, and enteroendocrine), cell division (precursors), or muscle contraction (muscle system). All of these activities require lots of energy and ATP.
+
+#Question 6a
+
+
+
