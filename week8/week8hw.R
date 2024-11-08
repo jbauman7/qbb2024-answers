@@ -3,6 +3,7 @@
 library("zellkonverter")
 library("scuttle")
 library("scater")
+library("scran")
 library("ggplot2")
 
 
@@ -58,6 +59,35 @@ plotColData(gut, y = "subsets_Mito_percent", x = "broad_annotation") +
 #Looks like enteroendocrine cells, gland cells, gut cells, muscle cells, and somatic precursor cells seems to have the highest percentage of mitochondrial reads, and thus have the highest presence/activity of mitochondria within them. This makes sense, as these cells are involved with lots of secretion and protein production (glands, gut, and enteroendocrine), cell division (precursors), or muscle contraction (muscle system). All of these activities require lots of energy and ATP.
 
 #Question 6a
+coi <- colData(gut)$broad_annotation == "epithelial cell"
+epi <- gut[,coi]
+plotReducedDim(epi, "X_umap", colour_by = "annotation")  +
+  labs(title = "Reduced Dimension Plot of Epithelial Cells", x = "UMAP 1", y = "UMAP 2")
+marker.info <- scoreMarkers( epi, colData(epi)$annotation )
+chosen <- marker.info[["enterocyte of anterior adult midgut epithelium"]]
+ordered <- chosen[order(chosen$mean.AUC, decreasing=TRUE),]
+head(ordered[,1:4])
 
+#Question 6b
+#The 6 top marker genes in the anterior midgut are Mal-A6, Men-b, vnd, betaTry, Mal-A1, and Nhe2. 
+#Most of these genes seem to be involved in carbohydrate metabolism. 
+plotExpression(epi, features = "Mal-A6", x = "annotation") + 
+  theme( axis.text.x=element_text( angle=90 ) ) + 
+  labs(title = "Mal-A6 Expression across epithelial cell types", x = "Epithelial cell type")
 
+#Repeating analysis with somatic precursor cells
+coi <- colData(gut)$broad_annotation == "somatic precursor cell"
+spcs <- gut[,coi]
+marker.info <- scoreMarkers(spcs, colData(spcs)$annotation )
+chosen <- marker.info[["intestinal stem cell"]]
+ordered <- chosen[order(chosen$mean.AUC, decreasing=TRUE),]
+head(ordered[,1:4])
+#Marker genes for intestinal stem cells are hdc, kek5, N, zfh2, Tet, and Dl
 
+#Question 7
+goi <- rownames(ordered)[1:6]
+plotExpression(spcs, features = goi, x = "annotation") + 
+  theme( axis.text.x=element_text( angle=90 ) ) + 
+  labs(title = "Marker gene expression across precursor cell types", x = "Somatic precursor cell type")
+#enteroblasts and intestinal stem cells seem to have similar patterns of expression among these 6 marker genes. 
+#Dl seems to be the most specific marker for intestinal stem cells. 
